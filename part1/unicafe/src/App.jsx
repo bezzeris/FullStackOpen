@@ -1,5 +1,19 @@
 import { useState } from 'react'
 
+const Button = ({ text, onClick }) => {
+  return (
+    <button onClick={onClick}>
+      {text}
+    </button>
+  )
+}
+
+const StatisticLine = ({ text, value }) => {
+  return (
+    <p>{text}: {value}</p>
+  )
+}
+
 // Definición de componente
 const Statistics = (props) => {
 
@@ -14,12 +28,11 @@ const Statistics = (props) => {
     return (
       <div>
         <h1>Statistics</h1>
-        <p>Good: {props.good}</p>
-        <p>Neutral: {props.neutral}</p>
-        <p>Bad: {props.bad}</p>
-        <p>All: {props.all}</p>
-        <p>Average: {props.average}</p>
-        <p>Positive: {props.positive} %</p>
+        <StatisticLine text = 'Good' value = { props.good } />
+        <StatisticLine text = 'Neutral' value = { props.neutral } />
+        <StatisticLine text= 'Bad' value = { props.bad} />
+        <StatisticLine text = 'All' value = { props.all } />
+        <StatisticLine text = 'Positive' value = { props.positive } />
       </div>
     )
   }
@@ -60,7 +73,7 @@ const App = () => {
       return (good - bad) / all
     }
   }
-  console.log("Average: ", average())
+  console.log('Average: ', average())
 
   // Función positive + 0 en vez de NaN
   // 0 Ya no es útil porque 1.9: unicaf paso 4
@@ -68,17 +81,17 @@ const App = () => {
     if (all === 0){
       return 0
     } else {
-      return (good / all) * 100
+      return (good / all) * 100 + ' %'
     }
   }
-  console.log("Positive: ", positive())
-  
+  console.log('Positive: ', positive())
+
   return (
     <div>
       <h1>Give feedback</h1>
-      <button onClick={handleGood}>Good</button>
-      <button onClick={handleNeutral}>Neutral</button>
-      <button onClick={handleBad}>Bad</button>
+      <Button text='Good' onClick = {handleGood} />
+      <Button text='Neutral' onClick = {handleNeutral} />
+      <Button text='Bad' onClick = {handleBad} />
       <Statistics good={good} neutral={neutral} bad={bad} all={all} average={average()} positive={positive()} />
     </div>
   )
