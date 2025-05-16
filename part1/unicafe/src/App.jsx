@@ -2,17 +2,27 @@ import { useState } from 'react'
 
 // Definición de componente
 const Statistics = (props) => {
-  return (
-    <div>
-      <h1>Statistics</h1>
-      <p>Good: {props.good}</p>
-      <p>Neutral: {props.neutral}</p>
-      <p>Bad: {props.bad}</p>
-      <p>All: {props.all}</p>
-      <p>Average: {props.average}</p>
-      <p>Positive: {props.positive} %</p>
-    </div>
-  )
+
+  if (props.all === 0){
+    return (
+      <div>
+        <h1>Statistics</h1>
+        <h2>No feedback given</h2>
+      </div>
+    )
+  } else {
+    return (
+      <div>
+        <h1>Statistics</h1>
+        <p>Good: {props.good}</p>
+        <p>Neutral: {props.neutral}</p>
+        <p>Bad: {props.bad}</p>
+        <p>All: {props.all}</p>
+        <p>Average: {props.average}</p>
+        <p>Positive: {props.positive} %</p>
+      </div>
+    )
+  }
 }
 
 const App = () => {
@@ -42,6 +52,7 @@ const App = () => {
   }
 
   // Función average + 0 en vez de NaN
+  // 0 Ya no es útil porque 1.9: unicaf paso 4
   const average = () => {
     if (all === 0){
       return 0
@@ -52,6 +63,7 @@ const App = () => {
   console.log("Average: ", average())
 
   // Función positive + 0 en vez de NaN
+  // 0 Ya no es útil porque 1.9: unicaf paso 4
   const positive = () => {
     if (all === 0){
       return 0
