@@ -10,7 +10,7 @@ const Button = ({ text, onClick }) => {
 
 const StatisticLine = ({ text, value }) => {
   return (
-    <p>{text}: {value}</p>
+    <p style={{ margin: '0px'}}>{text} {value}</p>
   )
 }
 
@@ -28,11 +28,34 @@ const Statistics = (props) => {
     return (
       <div>
         <h1>Statistics</h1>
-        <StatisticLine text = 'Good' value = { props.good } />
-        <StatisticLine text = 'Neutral' value = { props.neutral } />
-        <StatisticLine text= 'Bad' value = { props.bad} />
-        <StatisticLine text = 'All' value = { props.all } />
-        <StatisticLine text = 'Positive' value = { props.positive } />
+        <table>
+          <tbody>
+            <tr>
+              <td><StatisticLine text = 'Good: '/></td>
+              <td><StatisticLine value = { props.good } /></td>
+            </tr>
+            <tr>
+              <td><StatisticLine text = 'Neutral: '/></td>
+              <td><StatisticLine value = { props.neutral } /></td>
+            </tr>
+            <tr>
+              <td><StatisticLine text='Bad: ' /></td>
+              <td><StatisticLine value = { props.bad } /></td>
+            </tr>
+            <tr>
+              <td><StatisticLine text = 'All: '/></td>
+              <td><StatisticLine value = { props.all } /></td>
+            </tr>
+            <tr>
+              <td><StatisticLine text = 'Average: '/></td>
+              <td><StatisticLine value = { props.average } /></td>
+            </tr>
+            <tr>
+              <td><StatisticLine text = 'Positive: '/></td>
+              <td><StatisticLine value = { props.positive } /></td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     )
   }
