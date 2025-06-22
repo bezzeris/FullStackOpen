@@ -1,0 +1,12 @@
+sequenceDiagram
+participant user
+participant browser
+participant server
+
+user -->> browser: Write new note in text field
+user -->> browser: Clic on save button
+browser -->> server: POST https://studies.cs.helsinki.fi/exampleapp/spa/newnote
+activate server
+server-->>browser: 201 Created (Saved note)
+deactivate server
+Note right of browser: Browser update list on SPA

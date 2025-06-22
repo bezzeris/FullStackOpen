@@ -1,0 +1,72 @@
+SequenceDiagram
+participant browser
+participant server
+
+browser -->> server: GET https://studies.cs.helsinki.fi/exampleapp/notes
+activate server
+server -->> browser: HTML document
+deactivate server
+
+browser -->> server: GET https://studies.cs.helsinki.fi/exampleapp/main.css
+activate server
+server -->> browser: CSS file
+deactivate server
+
+browser -->> server: GET https://studies.cs.helsinki.fi/exampleapp/main.js
+activate server
+serve -->> browser: js file
+deactivate server
+
+Note right of browser: The browser start executing the js code that fetchs the JSON
+from server
+
+browser -->> server: GET https://studies.cs.helsinki.fi/exampleapp/data.json
+activate server
+server -->> browser: [{ "content":"123", "date": "2025-05-20T16:39:04.4182" }, ...]
+deactivate server
+
+Note right of browser: The browser executes the callback function that renders
+the notes
+
+browser -->> server: GET https://studies.cs.helsinki.fi/exampleapp/favicon.ico
+activate server
+server -->> browser: ico file not found
+deactivate server
+
+Note right of browser: The browser can not find the favicon.ico, 
+it shows the default icon
+
+Note right of browser: User write "Ola k ase" on input field.
+
+browser ->> server: POST https://studies.cs.helsinki.fi/exampleapp/new_note
+activate server
+server -->> browser: New note was created
+deactivate server
+
+Note right of browser: The browser executes the callback function that renders
+the notes
+
+browser -->> server: GET https://studies.cs.helsinki.fi/exampleapp/notes
+activate server
+server -->> browser: HTML document
+deactivate server
+
+browser -->> server: GET https://studies.cs.helsinki.fi/exampleapp/main.css
+activate server
+server -->> browser: CSS file
+deactivate server
+
+browser -->> server: GET https://studies.cs.helsinki.fi/exampleapp/main.js
+activate server
+serve -->> browser: js file
+deactivate server
+
+Note right of browser: The browser start executing the js code that fetchs the JSON
+from server
+
+browser -->> server: GET https://studies.cs.helsinki.fi/exampleapp/data.json
+activate server
+server -->> browser: [{ "content":"Ola k ase", "date": "2025-05-21T01:24:39.382Z" }, ...]
+deactivate server
+
+Note right of browser: The message is showed in notes
